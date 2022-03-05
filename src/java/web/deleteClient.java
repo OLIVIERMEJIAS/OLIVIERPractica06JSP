@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Progra
  */
-public class saveClient extends HttpServlet {
+public class deleteClient extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,45 +33,23 @@ public class saveClient extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        try{
-            ClientBL logic = new ClientBL();
+        try {
             Client client = new Client();
+            ClientBL logic = new ClientBL();
             String msg = "";
-            int result = 0;
-            int id = 0;
-            if(!request.getParameter("txtCod").isEmpty())
+            if(!request.getParameter("id").isEmpty())
+            
             {
-                client.setId_client(Integer.parseInt(request.getParameter("txtCod")));
-            }else
-            {
-                client.setId_client(0);
-            }
-                
-            client.setName(new String(request.getParameter("txtName").getBytes("ISO-8859-1"),
-                "UTF-8"));
-            client.setPhone(new String(request.getParameter("txtPhone").getBytes("ISO-8859-1"),
-                    "UTF-8"));
-            client.setDirection(new String(request.getParameter("txtDirection").getBytes("ISO-8859-1"),
-                    "UTF-8"));
-            if(client.getId_client() > 0){
-                if(logic.getOne("id_client =" + client.getId_client()).isExist()){
-                    result = logic.update(client);
-                     msg = logic.getMessage();
-                    
-                }else{
-                    msg = "No se logró modificar, porque el cliente ya no existe";
+                int id = Integer.parseInt(request.getParameter("id"));
+                client.setId_client(id);
+                if(logic.getOne("id_client = "+id).isExist()){
+                    logic.delete(client);
+                    msg=logic.getMessage();
                 }
             }
-            else{
-                result = logic.insert(client);
-                 msg = logic.getMessage();
-            }
-            
-           
             response.sendRedirect("clientes.jsp?msg="+msg);
-            
-            
-        }catch(Exception e){
+        }
+        catch(Exception e){
             out.print(e.getMessage());
         }
     }

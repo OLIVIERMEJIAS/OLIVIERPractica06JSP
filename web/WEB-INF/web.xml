@@ -4,9 +4,17 @@
         <servlet-name>saveClient</servlet-name>
         <servlet-class>web.saveClient</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>deleteClient</servlet-name>
+        <servlet-class>web.deleteClient</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>saveClient</servlet-name>
         <url-pattern>/saveClient</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>deleteClient</servlet-name>
+        <url-pattern>/deleteClient</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

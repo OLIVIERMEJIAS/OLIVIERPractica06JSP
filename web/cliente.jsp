@@ -39,7 +39,7 @@
                                 id="";
                             }
                             %>
-                        <form action="" method="post">
+                        <form action="saveClient" method="post">
                             <div class="form-group">
                                 <label for="txtCod" class="control-label">
                                     Código:

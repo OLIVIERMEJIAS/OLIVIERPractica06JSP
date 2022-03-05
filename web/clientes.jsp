@@ -22,6 +22,18 @@
                 <h1>Listado de Clientes</h1>
             </div>
             <br>
+            <% 
+            if(request.getParameter("msg") != null){%>
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <%= request.getParameter("msg") %>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" 
+                            aria-label="Close"></button>
+                </div>
+            <%}
+                request.setAttribute("msg", null);
+            %>
+            
+            <br>
             <form class="container" action="clientes.jsp" method="post">
                 <div class="input-group">
                     <input type="text" name="txtName" id="txtName" value=""
@@ -59,8 +71,8 @@
                             <td><%= client.getPhone() %></td>
                              <td><%= client.getDirection() %></td>
                              <td>
-                                 <a href="#">Eliminar</a> |
-                                  <a href="#">Modificar</a>
+                                 <a href="deleteClient?id=<%= client.getId_client() %>">Eliminar</a> |
+                                  <a href="cliente.jsp?id=<%= client.getId_client() %>">Modificar</a>
                              </td>
                         </tr> 
                         <%}
