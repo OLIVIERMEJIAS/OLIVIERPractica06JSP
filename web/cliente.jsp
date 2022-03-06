@@ -85,8 +85,8 @@
                                 <div class="input-group">
                                     <input type="submit" id="btnSave" value="Guardar" class="btn btn-primary m-2"/>
                                     <input type="reset" id="btnReset" value="Limpiar" class="btn btn-secondary m-2"/>
-                                    <input type="button" id="btnSave" value="Regresar" class="btn btn-warning m-2"
-                                           onclick="location.href='clientes.jsp'"/>
+                                    <input type="button" id="btnBack" value="Regresar" class="btn btn-warning m-2"
+                                           onclick="location.href='clientes.jsp?id='+id"/>
                                 </div>
                             </div>
                         </form>

@@ -20,39 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class deleteClient extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        try {
-            Client client = new Client();
-            ClientBL logic = new ClientBL();
-            String msg = "";
-            if(!request.getParameter("id").isEmpty())
-            
-            {
-                int id = Integer.parseInt(request.getParameter("id"));
-                client.setId_client(id);
-                if(logic.getOne("id_client = "+id).isExist()){
-                    logic.delete(client);
-                    msg=logic.getMessage();
-                }
-            }
-            response.sendRedirect("clientes.jsp?msg="+msg);
-        }
-        catch(Exception e){
-            out.print(e.getMessage());
-        }
-    }
+ 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -66,7 +34,8 @@ public class deleteClient extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+            String id = request.getParameter("id").toString();
+            response.sendRedirect("borrarCliente.jsp?id="+id);
     }
 
     /**
@@ -80,7 +49,27 @@ public class deleteClient extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        try {
+            Client client = new Client();
+            ClientBL logic = new ClientBL();
+            String msg = "";
+            if(!request.getParameter("txtCod").isEmpty())
+            
+            {
+                int id = Integer.parseInt(request.getParameter("txtCod"));
+                client.setId_client(id);
+                if(logic.getOne("id_client = "+id).isExist()){
+                    logic.delete(client);
+                    msg=logic.getMessage();
+                }
+            }
+            response.sendRedirect("clientes.jsp?msg="+msg);
+        }
+        catch(Exception e){
+            out.print(e.getMessage());
+        }
     }
 
     /**
