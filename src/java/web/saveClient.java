@@ -23,7 +23,16 @@ public class saveClient extends HttpServlet {
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
-     *
+     * Se verifica que el Id en el input tipo text del código esté vacío,
+     * si lo está es insersión, no no es actualización
+     * el id con número mayor a cero es asignado a una variable si el input
+     * contiene algo, sino es cero
+     * después esa variable id es evaluada y si es mayor a cero se actualiza 
+     * - previo análisis de que exista todavía el cliente -
+     * y sino se enserta un nuevo cliente, ambos casos usan un nuevo cliente,
+     * para el cual se han asignado sus atributos con los datos de los inputs
+     * de la página cliente.jps
+     * Al final se redirecciona a la página de clientes.jps con un mensaje de salida
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs

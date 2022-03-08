@@ -25,7 +25,13 @@ public class deleteClient extends HttpServlet {
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
-     *
+     * Este método responde al llamado de request en Get, lo que realiza
+     * es redirigir a la página de borrar cliente que es una confirmación de borrado
+     * para este caso al redireccionar se le pasa el id del cliente, 
+     * para cargar los datos en la confirmación
+     * este id es procesado en este método doGet del servlet, el proviene 
+     * de la página clientes.jso
+     * cuando le dan click a eliminar
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
@@ -40,7 +46,11 @@ public class deleteClient extends HttpServlet {
 
     /**
      * Handles the HTTP <code>POST</code> method.
-     *
+     * Este método elimina el cliente directamente, después de haberse confirmado
+     * la eliminación, en sí el obtiene el id del cliente de input con el name txtCod
+     * se valida que este input no este vacío, se valida que el cliente aún existe
+     * y se procede a eliminar y redirijir a la página de clientes.jps con un mensaje
+     * de salida que aparecerá en un alert
      * @param request servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
